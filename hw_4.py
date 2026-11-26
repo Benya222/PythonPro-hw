@@ -10,7 +10,8 @@ def composition_of_amount(input_amount: str):
             '100': None,
             '50': None,
             '20': None,
-            '10': None
+            '10': None,
+            '5': None
         },
         'coins': {
             '2': None,
@@ -24,14 +25,16 @@ def composition_of_amount(input_amount: str):
         }
     }
 
-    if amount >= 10:
+    min_banknote = int(min(composition['banknotes'].keys(), key= lambda x: int(x)))
+
+    if amount >= min_banknote:
         banknotes = composition['banknotes']
         for nominal in banknotes.keys():
             while amount >= int(nominal): 
                 amount -= int(nominal)
                 banknotes[nominal] = increase_nominal_counter(banknotes[nominal])
 
-            if int(nominal) < 10:
+            if int(nominal) < min_banknote:
                 break
             
 
@@ -70,16 +73,15 @@ def print_composition(composition):
             print(f"{value} X {key}")       
 
 
-
 def start_program():
     user_amount = input('Введіть суму: ')
     composition = composition_of_amount(user_amount)
 
     if composition['banknotes']:
-        print(f"Кількість банкнот: {len(composition["banknotes"].keys())}")
+        print(f"Кількість банкнот: {sum(composition['banknotes'].values())}")
 
     if composition['coins']:
-        print(f"Кількість монет: {len(composition["coins"].keys())}")
+        print(f"Кількість монет: {sum(composition['coins'].values())}")
 
     print('-'*30)
     print("Склад суми:")    

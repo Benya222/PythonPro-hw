@@ -17,7 +17,15 @@ def inverted_triangle(h):
 
 def square_bagle(h, w):
     string = '*' * int(w)
+    if int(w) == 1:
+        for _ in range(0, (int(h))):
+            print(string)
+
+        return
+
+    
     print(string)
+
     for _ in range(0, (int(h)-2)):
         print(f"*{' '*(int(w)-2)}*")
 
@@ -33,4 +41,4 @@ print("="*30)
 inverted_triangle(2)
 print("="*30)
 
-square_bagle('7', '5')
+square_bagle('4', '1')

@@ -22,7 +22,7 @@ def valid_username(username: str):
     return ", ".join(errors_explain)
 
 def valid_email(email: str):
-    return True if '@' in email else "Електронна адреса повинна мати один символ '@'"
+    return True if email.count("@") == 1 in email else "Електронна адреса повинна мати один символ '@'"
 
 def valid_age(age: str):
     if age.isdecimal():
